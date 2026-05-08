@@ -7,7 +7,7 @@ description: Create or update combo products in Lite / Palmnet admin through sto
 
 Use this skill for store-level combo work in Lite.
 
-Shared operating rules live in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Shared operating rules live in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 Always apply the shared rules first, especially:
 - confirm environment, store, and exact change before any submission
@@ -67,7 +67,7 @@ Reject or pause on:
 
 ## Shared Interface Points
 
-Use the shared auth, product, category, tax, and optional asset endpoints defined in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Use the shared auth, product, category, tax, and optional asset endpoints defined in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 Combo products do not use a separate `/combos` API path. They are created through the product endpoint with `kind: "combo"`.
 
@@ -161,7 +161,7 @@ Do not guess across environments:
 
 Never reuse IDs copied from another environment without re-reading the target environment first.
 
-Use the shared tax resolution rules from [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Use the shared tax resolution rules from [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 ## Recommended Workflow
 

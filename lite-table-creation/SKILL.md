@@ -7,7 +7,7 @@ description: Create table batches in the Lite / Palmnet admin for a selected sto
 
 Use this skill for store-level table work in Lite.
 
-Shared operating rules live in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Shared operating rules live in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 Always apply the shared rules first, especially:
 - confirm environment, store, and exact change before any submission
@@ -75,7 +75,7 @@ Before creation:
 
 ## Shared Interface Points
 
-Use the shared table endpoints defined in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Use the shared table endpoints defined in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 The normal creation workflow should still follow the admin screen unless the user asks otherwise.
 

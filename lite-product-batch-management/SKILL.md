@@ -7,7 +7,7 @@ description: Batch-create categories and products in the Lite / Palmnet admin fo
 
 Use this skill for store-level category and standard product work in Lite.
 
-Shared operating rules live in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Shared operating rules live in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 Always apply the shared rules first, especially:
 - confirm environment, store, and exact change before any submission
@@ -55,7 +55,7 @@ Reject ambiguous data instead of guessing:
 
 ## Shared Interface Points
 
-Use the shared auth, category, product, and tax endpoints defined in [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Use the shared auth, category, product, and tax endpoints defined in [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 For this skill, the main write path is:
 - categories through store category endpoints
@@ -113,7 +113,7 @@ Example:
 
 ## Tax Rate Handling
 
-Use the shared tax resolution rules from [lite-operation general skill](/Users/haoxian/Documents/Cursor/Lite-operation/SKILL.md).
+Use the shared tax resolution rules from [lite-operation-workflow](../lite-operation-workflow/SKILL.md).
 
 Product-specific matching rule:
 - prefer an explicit tax label from the source data, such as `IVA (10%)`
