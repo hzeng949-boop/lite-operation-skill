@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Combos Creation"
+  short_description: "在 Lite 后台建立或修改 combo，并严格确认环境、门店与变更内容"
+  default_prompt: "Use $lite-combos-creation to create, update, delete, or inspect Lite combo products with strict store-level confirmation and final verification."

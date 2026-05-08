@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Operation Workflow"
+  short_description: "规范 Lite 后台后续 workflow 的命名、拆分方式与 guidance 引用方式"
+  default_prompt: "Use $lite-operation-workflow when creating or extending a new Lite admin workflow skill, including naming, shared-guidance inheritance, and references layout."

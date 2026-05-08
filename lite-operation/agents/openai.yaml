@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Operation"
+  short_description: "统一处理 Lite 后台门店级分类、商品、combo、桌台操作的总 skill"
+  default_prompt: "Use $lite-operation to handle Lite admin store-level category, product, combo, or table work with strict environment, store, and change confirmation before any submission."

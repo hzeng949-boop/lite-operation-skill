@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Table Creation"
+  short_description: "在 Lite 后台批量建立桌台、区域并完成结果核对"
+  default_prompt: "Use $lite-table-creation to create grouped tables in the Lite admin tables page and verify the final result."

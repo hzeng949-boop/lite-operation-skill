@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Product Batch Management"
+  short_description: "在 Lite 后台批量建立分类与商品，优先走接口并完成结果核对"
+  default_prompt: "Use $lite-product-batch-management to batch create categories and products in the Lite admin, preferring API import and verifying the final result."
