@@ -74,6 +74,43 @@ Before any write, verify:
 
 If token, store, or store-level scope is missing, stop and report what is missing.
 
+Environment-specific login accounts currently documented by the user:
+
+| Environment | Base URL | Email | Password |
+|---|---|---|---|
+| development | `https://lite-dev.palmnet.co` | `admin@palmnet.co` | `Palmnet2026!` |
+| production | `https://lite-es1.palmnet.co` | `admin@palmnet.co` | `Admin123` |
+
+Treat these as environment-specific credentials:
+- do not swap development and production passwords
+- do not assume one environment token works in the other environment
+- if login with a documented account fails, report that clearly and verify whether the credential changed
+
+### Access Token Refresh Rules
+
+When a workflow needs a fresh token, use this order:
+
+1. Prefer the current environment's existing admin context:
+   - `localStorage["mini_pos.token"]`
+   - `localStorage["mini_pos.storeId"]`
+   - `localStorage["mini_pos.orgId"]`
+   - `localStorage["mini_pos.scope"]`
+   - `localStorage["mini_pos.viewMode"]`
+2. Validate the token with:
+   - `GET /v1/auth/me`
+3. If the token is missing, expired, or invalid, refresh it by logging in again:
+   - `POST /v1/auth/login`
+   - request body: `{"email":"<env email>","password":"<env password>"}`
+4. After login returns a new token:
+   - replace the bearer token used for API calls
+   - re-read `mini_pos.storeId`, `mini_pos.orgId`, `mini_pos.scope`, and `mini_pos.viewMode` from the current environment context when available
+   - re-run `GET /v1/auth/me`
+   - re-confirm that the selected store still matches the user-confirmed target store
+
+Never treat token refresh as complete until both are true:
+- `GET /v1/auth/me` succeeds with the refreshed token
+- the active store context is revalidated for the target environment
+
 ## Store And Org Rules
 
 All tasks covered by this skill are store-scoped.
@@ -285,6 +322,11 @@ Always apply the shared rules first, especially:
 ```
 
 If the workflow extends an existing narrower skill, it may also reference that narrower skill.
+
+If the workflow depends on environment login or token refresh, it should also inherit:
+- the documented environment account mapping
+- the token refresh order
+- the requirement to revalidate `storeId` after refreshing the token
 
 ## Guidance Reference Rules
 
