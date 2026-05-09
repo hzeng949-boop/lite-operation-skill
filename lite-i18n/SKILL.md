@@ -69,16 +69,17 @@ Read the exact workflow in [references/workflow.md](references/workflow.md) befo
 
 Prefer API updates over UI editing.
 
-Default locale rule:
-- read the current store first
-- if `defaultLocale` is `es`, keep `_base` aligned with the cleaned Spanish value unless the user explicitly asks for another base locale
-- never assume the base locale from memory alone
+Base name rule:
+- preserve the visible display style unless the user explicitly asks to rewrite it
+- when the original display name is a combined Chinese-Spanish label, keep `_base` as `中文·西语`
+- never overwrite `_base` with pure Spanish unless the user explicitly asks for that output
 
 Split rule:
 - if one field contains both Chinese and Spanish and the separation is clear, split it
 - write Chinese into `zh`
 - write Spanish into `es`
-- align `_base` with the current store default locale
+- keep `_base` in the store's original display style
+- default combined format is `中文·西语` when both languages are present
 
 Do not invent translations by default:
 - if the field is pure Spanish and has no Chinese source, leave `zh` empty unless the user explicitly asks to generate or supply Chinese
@@ -95,14 +96,15 @@ Preserve unrelated fields:
 1. Confirm environment, store, and exact i18n scope.
 2. Read the current store and confirm `defaultLocale` plus `supportedLocales`.
 3. Read the target objects from store APIs.
-4. Separate records into:
+4. Determine the current base-name display style from existing data or user instruction.
+5. Separate records into:
    - safe to split automatically
    - already correct
    - missing translation and not safe to infer
-5. Write only the safe records.
-6. Read back the updated records.
-7. Verify no mixed Chinese-Spanish strings remain in the fields that were supposed to be split.
-8. Report updated counts and list any remaining items that still need manual translation.
+6. Write only the safe records.
+7. Read back the updated records.
+8. Verify no mixed Chinese-Spanish strings remain in the fields that were supposed to be split.
+9. Report updated counts and list any remaining items that still need manual translation.
 
 Use the UI only when the API path is blocked or the user explicitly asks for UI entry.
 
@@ -111,7 +113,7 @@ Use the UI only when the API path is blocked or the user explicitly asks for UI 
 An i18n batch is complete only when all of these are true:
 - the requested object scope was processed
 - updated entries show the expected `zh` and `es`
-- `_base` matches the store default locale rule
+- `_base` matches the preserved display-name rule
 - no API write errors remain
 - no mixed-language strings remain in the fields that were supposed to be split
 

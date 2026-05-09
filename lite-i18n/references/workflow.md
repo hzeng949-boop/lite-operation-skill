@@ -135,14 +135,18 @@ Preserve:
 - item `sortOrder`
 - item `isDefault`
 
-## Default Locale Rule
+## Base Name Rule
 
-Read `defaultLocale` from the current store.
+Do not rewrite `_base` by default.
 
-If `defaultLocale` is `es`:
-- `_base` should usually match the cleaned Spanish value
+Preserve the store's visible naming style:
+- if the store already uses combined labels, keep `_base` as `中文·西语`
+- if the user explicitly asks for another display format, follow that instruction
 
-Do not hardcode this rule across stores without re-reading the store.
+For translation cleanup, the default action is:
+- keep `_base` as the display name
+- write Chinese to `zh`
+- write Spanish to `es`
 
 ## Verification Checklist
 
@@ -152,7 +156,7 @@ After updates:
 2. Count updated records by object type.
 3. Check that target fields no longer contain mixed Chinese and Spanish where splitting was expected.
 4. Check that `zh` contains Chinese and `es` contains Spanish for the updated entries.
-5. Check that `_base` matches the current store default locale rule.
+5. Check that `_base` matches the preserved display-name rule.
 6. Produce a list of remaining entries that still have no safe translation source.
 
 ## Report Format
