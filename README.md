@@ -20,6 +20,8 @@
   负责 combo 的建立、修改、检查。
 - `lite-table-creation`
   负责桌台的批量建立、修改、检查。
+- `lite-table-qrcode-export`
+  负责导出指定门店的桌台二维码对应表，默认输出 `桌台名称` 与 URL。
 
 ## Agent 使用方式
 
@@ -52,6 +54,8 @@
   使用 `lite-combos-creation`
 - 桌台任务：
   使用 `lite-table-creation`
+- 桌台二维码导出任务：
+  使用 `lite-table-qrcode-export`
 
 ### 新增 workflow 的规则
 

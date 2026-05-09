@@ -79,7 +79,7 @@ Environment-specific login accounts currently documented by the user:
 | Environment | Base URL | Email | Password |
 |---|---|---|---|
 | development | `https://lite-dev.palmnet.co` | `admin@palmnet.co` | `Palmnet2026!` |
-| production | `https://lite-es1.palmnet.co` | `admin@palmnet.co` | `Admin123` |
+| production | `https://lite-es1.palmnet.co` | `admin@palmnet.co` | `admin123` |
 
 Treat these as environment-specific credentials:
 - do not swap development and production passwords
@@ -138,6 +138,7 @@ Then call the matching workflow-specific skill:
 - `lite-product-batch-management`
 - `lite-combos-creation`
 - `lite-table-creation`
+- `lite-table-qrcode-export`
 
 ## Shared Required Parameters
 
