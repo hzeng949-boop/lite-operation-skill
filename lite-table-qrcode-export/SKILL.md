@@ -1,6 +1,6 @@
 ---
 name: lite-table-qrcode-export
-description: Export a store's Lite table list into a matching sheet of table name and QR code URL. Use when the user wants the table QR code mapping for a selected store in `https://lite-es1.palmnet.co/admin/tables` or another Lite environment, especially when the final output should be a two-column table or CSV with `桌台名称` and URL.
+description: Export a store's Lite table list into a matching CSV of table name and QR code URL. Use when the user wants the table QR code mapping for a selected store in `https://lite-es1.palmnet.co/admin/tables` or another Lite environment, especially when the final output should be a two-column CSV with `桌台名称` and URL.
 ---
 
 # Lite Table QR Code Export
@@ -23,9 +23,12 @@ Prefer API reads over manual page copying.
 This skill is for read-only export work.
 
 Typical outputs:
-- markdown table
 - CSV text
-- spreadsheet-ready two-column table
+- spreadsheet-ready two-column text
+- markdown table, only if the user explicitly asks for it
+
+Default output format:
+- CSV
 
 Default output columns:
 - `桌台名称`
@@ -42,9 +45,9 @@ Collect or confirm these values before exporting:
 - action type
   - `inspect-only`
 - desired output format
-  - markdown table
   - CSV
   - spreadsheet-ready plain text
+  - markdown table
 - QR code URL rule, if the user supplied one
 
 If the user does not provide a QR code URL rule, read the current confirmed rule from the task context before generating links.
@@ -95,8 +98,12 @@ Sorting rules:
 - do not silently reorder mixed naming styles unless the user asks
 
 Output rules:
-- if the user asks for a matching sheet, return only `桌台名称` and `URL`
-- wrap URLs in backticks for markdown output
+- if the user asks for a matching sheet and does not specify a format, return CSV by default
+- return only `桌台名称` and `URL`, unless the user explicitly asks for extra columns
+- use this exact CSV header order:
+  - `桌台名称,URL`
+- do not wrap URLs in backticks in CSV output
+- do not add markdown table pipes around CSV output
 - do not shorten URLs
 - preserve exact table names
 
@@ -109,7 +116,7 @@ Output rules:
 5. Read `GET /v1/stores/{storeId}/tables`.
 6. Check that every returned row belongs to the confirmed `storeId`.
 7. Build the export rows from `name` and `id`.
-8. Format the final output in the user-requested table format.
+8. Format the final output in CSV unless the user explicitly asks for another format.
 9. Count the exported rows and verify the first and last rows.
 
 Use the UI only when the API read path is blocked.
