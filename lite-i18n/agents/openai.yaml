@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite I18n"
+  short_description: "在 Lite 后台批量整理分类、商品与修饰组的多语言字段并完成核对"
+  default_prompt: "Use $lite-i18n to batch split and write category, product, and modifier-group translations in the Lite admin, preferring API updates and verifying the final result."
