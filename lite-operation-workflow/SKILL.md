@@ -21,6 +21,7 @@ This skill covers:
 - completion and verification rules
 - naming rules for future workflow skills
 - guidance reference rules for future expansion
+- second-stage table short-code binding routing
 
 ## Hard Safety Gate
 
@@ -133,12 +134,14 @@ Choose the object type first:
 | product | API | Batch import or edit standard products |
 | combo | API | Combos are created through product APIs with `kind: "combo"` |
 | table | Admin UI | Default path is the tables page unless the user explicitly asks for API-oriented handling |
+| table-shortcode | API | Use after table creation to bind current store table URLs to PalmNFC short codes |
 
 Then call the matching workflow-specific skill:
 - `lite-product-batch-management`
 - `lite-combos-creation`
 - `lite-table-creation`
 - `lite-table-qrcode-export`
+- `lite-shorcode-creation`
 
 ## Shared Required Parameters
 
@@ -190,6 +193,11 @@ Table endpoints:
 - `PATCH /v1/stores/{storeId}/tables/{tableId}`
 - `DELETE /v1/stores/{storeId}/tables/{tableId}`
 - `PUT /v1/stores/{storeId}/tables-order`
+
+PalmNFC short-code endpoints:
+- `POST /api/codes`
+- `GET /api/export?recordId=...`
+- `POST /api/import`
 
 Optional asset endpoint:
 - `POST /v1/orgs/{orgId}/assets`

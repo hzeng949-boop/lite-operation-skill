@@ -7,6 +7,7 @@
 - 任何 Lite 后台任务都先读取 `lite-operation-workflow`
 - 再根据任务类型调用对应的子 skill
 - 子 skill 只保留自己独有的规则，不重复写共通规则
+- 桌台相关流程允许拆成两阶段：先建桌台，再做 PalmNFC short code 绑定
 
 ## 仓库结构
 
@@ -22,6 +23,8 @@
   负责桌台的批量建立、修改、检查。
 - `lite-table-qrcode-export`
   负责导出指定门店的桌台二维码对应表，默认输出 `桌台名称` 与 URL。
+- `lite-shorcode-creation`
+  负责在桌台创建完成后，读取当前门店桌台 URL，生成 PalmNFC short code，重组 `Short Code,URL` CSV，并导入绑定关系。
 
 ## Agent 使用方式
 
@@ -56,6 +59,21 @@
   使用 `lite-table-creation`
 - 桌台二维码导出任务：
   使用 `lite-table-qrcode-export`
+- 桌台 short code 绑定任务：
+  使用 `lite-shorcode-creation`
+
+### 桌台两阶段流程
+
+如果任务是桌台建立后继续做 PalmNFC 活码绑定，默认拆成两阶段：
+
+1. 用 `lite-table-creation` 建立或确认桌台
+2. 用 `lite-shorcode-creation` 读取当前门店桌台 URL，并完成 PalmNFC short code 绑定
+
+第二阶段的默认规则：
+- 运行时读取 Lite 当前门店桌台数据，不使用旧 CSV 作为默认来源
+- PalmNFC short code 数量必须和 Lite 当前桌台数量一致
+- 依照行顺序一一对应
+- 导入时默认使用 `allowOverride=true`
 
 ### 新增 workflow 的规则
 

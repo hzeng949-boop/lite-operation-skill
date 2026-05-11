@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lite Shorcode Creation"
+  short_description: "读取 Lite 当前门店桌台 URL，生成并导入 PalmNFC short code 对应关系"
+  default_prompt: "Use $lite-shorcode-creation to read the current Lite store table URLs, generate matching PalmNFC short codes, import the rebuilt mapping CSV with allowOverride=true, and verify the result."
